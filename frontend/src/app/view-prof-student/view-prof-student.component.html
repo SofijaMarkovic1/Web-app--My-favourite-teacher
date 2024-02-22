@@ -1,0 +1,139 @@
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+              <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                  <a routerLink="/studentProfile" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                      <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Profile</span>
+                  </a>
+                  <a routerLink="/studentProfs" class="list-group-item list-group-item-action py-2 ripple active">
+                      <i class="bi bi-book" style="margin-right: 20px;"></i><span>Professors</span>
+                  </a>
+                  <a routerLink="/studentClasses" class="list-group-item list-group-item-action py-2 ripple">
+                      <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Classes</span></a>
+                  <a routerLink="/studentNotifications" class="list-group-item list-group-item-action py-2 ripple">
+                      <i class="bi bi-bell-fill" style="margin-right: 20px;"></i><span>Notifications</span>
+                  </a>
+                  <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                    <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                  </a>
+                </div>
+            </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;"> 
+            <div class="card-img-top"></div>
+            <div class="card-body little-profile text-center">
+                <div class="pro-img"> <img src="data:image/jpeg;base64,{{proffesor.image}}" alt="user"></div>
+                <h2 class="m-b-0">{{proffesor.name}} {{proffesor.surname}}</h2>
+                <p>Professor</p>
+                <p *ngIf="avg>0 && avg<=1"><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p>
+                <p *ngIf="avg>1 && avg<=2"><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p>
+                <p *ngIf="avg>2 && avg<=3"><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p>
+                <p *ngIf="avg>3 && avg<=4"><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p>
+                <p *ngIf="avg>4 && avg<=5"><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p>
+                <p *ngIf="avg==0">No raiting yet.</p>
+                    
+                    <br/>
+                    <div class="row text-center m-t-20">
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">Email</h3><small>{{proffesor.email}}</small>
+                    </div>
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">Contact</h3><small>{{proffesor.contact}}</small>
+                    </div>
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">Address</h3><small>{{proffesor.adress}}</small>
+                    </div>
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">Works with</h3><small>{{worksWith}}</small>
+                    </div>
+                </div>
+                <br/><br/><br/>
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-4">
+                    <ul class="list-group" style="margin-left: 10%; margin-right: 10%; text-align: left;" id="listOfSubjects">
+                      <label for="listOfSubjects"><h3>What students said about {{proffesor.name}}</h3></label>
+                      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let c of comments" style="background-color: transparent;">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold">{{c}}</div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div class="col-4">
+                    <ol class="list-group list-group-numbered" style="margin-left: 10%; margin-right: 10%; text-align: left;" id="listOfSubjects">
+                      <label for="listOfSubjects"><h3>List of subjects</h3></label>
+                      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let sub of subjects" style="background-color: transparent;">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold">{{sub.name}}</div>
+                        </div>
+                      </li>
+                    </ol>
+                  </div>
+                  <div class="col-1"></div>
+                </div>
+                <br/><br/>
+                <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" (click)="openScheduleClassModal()">Schedule a class</button>
+                <br/><br/><hr style="margin-top: 20px; margin-bottom: 20px;">
+                <div class="row">
+                  <div class="col-3"></div>
+                  <div class="col-6">
+                    <app-calendar-student></app-calendar-student>
+                  </div>
+                  <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog">
+      <div class="modal-content"  style="width: 100%; padding: 10%; margin-top: 25%;">
+        <div class="modal-header text-center">
+          <h4 id="editProfileModalLabel">Schedule a class with {{proffesor.name}}</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+            </div>
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm" style="color: green;">{{message}}</h6></label>
+            </div>
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm">Subject</h6></label>
+              <div>
+                  <select class="form-select" [(ngModel)]="selectedSubject">
+                      <option *ngFor="let s of subjects" value="{{s.idsubject}}">{{s.name}}</option>
+                  </select>
+              </div>
+            </div>
+            <br/>
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm">Date and time</h6></label>
+              <input class="mb-4" type="datetime-local" [(ngModel)]="dateTime">
+            </div>
+            
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm">Topics</h6></label>
+              <textarea class="mb-4" [rows]="5" type="text" placeholder="Enter topics for the scheduled class..." [(ngModel)]="topic"></textarea>
+            </div>
+            
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm"><input class="mb-4" type="checkbox" [(ngModel)]="double" style="margin-right: 10px;"/>Double class</h6></label>
+            </div>
+        </div>
+        
+        <div class="modal-footer text-center">
+          <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" style="margin-right: 30%;" (click)="scheduleClass()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

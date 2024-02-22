@@ -1,0 +1,365 @@
+.container{
+    max-width: 100%;
+    background-color: #efe8dc;
+    margin: 0px;
+    padding: 0%;
+}
+.card-img-top{
+    height:300px;
+    width: 100%;
+    background-color: #2e7d82;
+}
+
+.card-no-border .card {
+    border-color: #d7dfe3;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05)
+}
+.card{
+    border: none;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    background-color: #efe8dc;
+    border-color: #efe8dc;
+}
+
+.pro-img {
+    margin-top: -100px;
+    margin-bottom: 10px
+}
+
+.little-profile .pro-img img {
+    width: 200px;
+    height: 200px;
+    -webkit-box-shadow: 0 0 15px #efe8dc;
+    box-shadow: 0 0 15px ;
+    border-radius: 100%
+}
+
+
+
+h3 {
+    line-height: 30px;
+    font-size: 21px
+}
+
+.btn-rounded.btn-md {
+    padding: 12px 35px;
+    font-size: 16px
+}
+
+.btn-primary,
+.btn-primary.disabled {
+    background: #2e7d82;
+    border: 1px solid #2e7d82;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(116, 96, 238, 0.14), 0 3px 1px -2px rgba(116, 96, 238, 0.2), 0 1px 5px 0 rgba(116, 96, 238, 0.12);
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in
+}
+
+.btn-rounded {
+    border-radius: 60px;
+    padding: 7px 18px
+}
+
+.m-t-20 {
+    margin-top: 20px
+}
+
+.text-center {
+    text-align: center !important
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem
+}
+
+
+    
+    /* Sidebar */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        padding: 58px 0 0; /* Height of navbar */
+        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+        width: 20%;
+        z-index: 600;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: 400;
+        font-size:22px;
+    }
+    
+    @media (max-width: 991.98px) {
+    .sidebar {
+        width: 100%;
+    }
+    }
+    .sidebar .active {
+        border-radius: 5px;
+        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+        background-color: #2e7d82;
+        border-color: #2e7d82;
+    }
+    
+    .sidebar-sticky {
+        position: relative;
+        top: 0;
+        height: calc(100vh - 48px);
+        padding-top: 0.5rem;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    }
+
+
+
+    #main {
+        background-color: #efe8dc;
+    }
+
+
+    #main * {
+        box-sizing: border-box;
+      }
+      
+      /* Style the body */
+    #main  body {
+        margin: 0;
+        background-color: #efe8dc;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
+      
+      /* Header/logo Title */
+    #main .header {
+        padding: 80px;
+        text-align: center;
+        background: #2e7d82;
+        color: #efe8dc;
+        font-size: 25px;
+      }
+      
+      /* Increase the font size of the heading */
+    #main .header h1 {
+        font-size: 60px;
+      }
+      /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+    #main  .navbar {
+        overflow: hidden;
+        background-color: #2e7d82;
+        top: 0;
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+      
+      /* Style the navigation bar links */
+    #main .navbar a {
+        float: left;
+        display: block;
+        color: #efe8dc;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: 700;
+      }
+    
+    #main label {
+          text-decoration: none;
+          color: rgb(214, 193, 156);
+          float: left;
+          display: block;
+          text-align: center;
+          padding: 14px 20px;
+          text-decoration: none;
+          font-size: 25px;
+          font-weight: 700;
+      }
+    #main  label:hover {
+        color: rgb(203, 183, 149);
+      }
+    
+    #main .x {
+        text-decoration: none;
+        color: rgb(214, 193, 156);
+        font-size: 30px;
+      }
+    #main .x:hover {
+        color: rgb(203, 183, 149);
+      }
+    
+      
+      
+      /* Right-aligned link */
+    #main .navbar a.right {
+        float: right;
+      }
+      
+      /* Change color on hover */
+    #main .navbar a:hover {
+        color: rgb(214, 193, 156);
+      }
+      
+      /* Column container */
+    #main .row {  
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap; /* IE10 */
+        flex-wrap: wrap;
+        padding-left: 2%;
+        padding-right: 2%;
+      }
+      
+      /* Create two unequal columns that sits next to each other */
+      /* Sidebar/left column */
+    #main .side {
+        -ms-flex: 20%; /* IE10 */
+        flex: 20%;
+        background-color: #efe8dc;
+        padding: 15px;
+        margin-top: 3%;
+        flex: 1;
+      }
+    #main .side .img{
+        width: 60%;
+        height: 70%;
+        margin: 4%;
+        margin-bottom: 6%;
+      }
+    #main .avatar {
+        vertical-align: middle;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+      }
+      
+      /* Fake image, just for this example */
+    #main .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+      }
+      
+      /* Footer */
+    #main .footer {
+        padding: 20px;
+        text-align: center;
+        background-color: #2e7d82;
+        color: #efe8dc;
+      }
+    
+    #main .image-container {
+        position: relative;
+        overflow: hidden;
+        margin: 2%;
+      }
+    
+      /* Dodajte stilove za sliku */
+    #main .image-container img {
+        transition: opacity 0.5s ease-in-out;
+      }
+    
+      /* Dodajte stilove za tekst */
+    #main .image-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+    
+      /* Kada je roditeljski kontejner hover-ovan, postavljamo opacity na 0 za sliku i 1 za tekst */
+    #main .image-container:hover img {
+        opacity: 0;
+      }
+    
+    #main .image-container:hover .image-text {
+        opacity: 1;
+      }
+    #main .container {
+        position: relative;
+        width: 30%;
+        max-width: 300px;
+      }
+      
+      /* Make the image to responsive */
+    #main  .image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      
+      /* The overlay effect - lays on top of the container and over the image */
+    #main  .overlay {
+        position: absolute;
+        bottom: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5); /* Black see-through */
+        color: #f1f1f1;
+        width: 100%;
+        transition: .5s ease;
+        opacity:0;
+        color: white;
+        font-size: 20px;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      /* When you mouse over the container, fade in the overlay title */
+    #main  .container:hover .overlay {
+        opacity: 1;
+      }
+      
+      /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 700px) {
+        #main .row {   
+          flex-direction: column;
+        }
+      }
+      
+      /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+      @media screen and (max-width: 400px) {
+        #main .navbar a {
+          float: none;
+          width: 100%;
+        }
+      }
+      #main #myInput {
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+        margin-top: 20px;
+      }
+      
+      

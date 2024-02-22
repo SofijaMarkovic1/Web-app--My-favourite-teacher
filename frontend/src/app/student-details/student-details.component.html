@@ -1,0 +1,121 @@
+<head>
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                      <a routerLink="/professorProfile" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                          <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Profile</span>
+                      </a>
+                      <a routerLink="/professorClasses" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Classes</span></a>
+                      <a routerLink="/professorStudents" class="list-group-item list-group-item-action py-2 ripple active">
+                        <i class="bi bi-backpack-fill" style="margin-right: 20px;"></i><span>Students</span>
+                      </a>
+                      <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                    </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;" id="main"> 
+            <div class="header">
+                <h1>Students overview</h1>
+                <p>Your <b>easy way</b> for studying.</p>
+                
+            </div>
+            <br/><br/>
+            <div class="row" style="padding-left: 6%; padding-right: 2%;">
+                <h2>Student file: {{student.name}} {{student.surname}}</h2>
+                <br/><br/>
+                <h4 *ngIf="student.schoolType==1">Primary school, grade {{student.grade}}</h4>
+                <h4 *ngIf="student.schoolType==2">Grammar school, grade {{student.grade}}</h4>
+                <h4 *ngIf="student.schoolType==3">Vocational school, grade {{student.grade}}</h4>
+                <h4 *ngIf="student.schoolType==4">Art school, grade {{student.grade}}</h4>
+                <br/><br/>
+                <div class="row" *ngFor="let s of subjects; let i=index">
+                    <div class="main" *ngIf="showSubject[i]==true">
+                        <h3>{{s.name}}</h3>
+                        <table  class="table table-striped table-hover table-bordered" style="border-color: black; font-size: 20px; margin-top: 10px; background-color: #faf0e6; width: 100%;" id="table1">
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Grade</th>
+                                <th>Comment</th>
+                            </tr>
+                            <tr *ngFor="let p of pastClasses" >
+                                <td *ngIf="p.idsubject==s.idsubject">{{p.dateAndTimeStart.substring(0, 10)}}</td>
+                                <td *ngIf="p.idsubject==s.idsubject">{{p.dateAndTimeStart.substring(11, p.dateAndTimeStart.length)}} - {{p.dateAndTimeEnd.substring(11, p.dateAndTimeEnd.length)}}</td>
+                                <td *ngIf="p.professorGrade!=0 && p.idsubject==s.idsubject" >{{p.professorGrade}}</td>
+                                <td *ngIf="p.professorGrade==0 && p.idsubject==s.idsubject">
+                                    <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-right: 10px; color: black;" (click)="openGradeModal(p)">Grade student</button>
+                                </td>
+                                <td *ngIf="p.professorComment!=null && p.idsubject==s.idsubject">{{p.professorComment}}</td>
+                                <td *ngIf="p.professorComment==null && p.idsubject==s.idsubject">
+                                    <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-right: 10px; color: black;" (click)="openCommentModal(p)">Leave a comment</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentLabel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog">
+      <div class="modal-content"  style="width: 100%; padding: 10%; margin-top: 25%;">
+        <div class="modal-header text-center">
+          <h4 id="commentLabel">Leave a comment</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+                <label [ngClass]="{'red': comment.length === 255}" style="margin-bottom: 10px;">{{comment.length}}/255 characters</label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 180px;" [(ngModel)]="comment" [maxlength]="255"></textarea>
+                <label for="floatingTextarea2">Comment</label>
+            </div>
+            <br/><br/>
+            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-left: 25%;" (click)="leaveComment()">Submit</button>
+        </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="modal fade" id="gradeModal" tabindex="-1" aria-labelledby="commentLabel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog">
+      <div class="modal-content"  style="width: 100%; padding: 10%; margin-top: 25%;">
+        <div class="modal-header text-center">
+          <h4 id="commentLabel">Grade student</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+            </div>
+            <div class="form-floating row px-3">
+                <div>
+                    <select id="floatingTextarea" [(ngModel)]="gradeVal" class="form-select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <br/><br/>
+            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-left: 25%;" (click)="grade()">Submit</button>
+        </div>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,23 @@
+div{
+    background-color: #efe8dc;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 10px;
+}
+input[type="email"],
+input[type="datetime-local"]{
+    border: none;
+    border-bottom: 2px solid #333;
+    background-color: transparent;
+    padding: 5px;
+    width: 150px;
+    outline: none;
+}
+input[type="email"]:focus,
+input[type="datetime-local"]:focus{
+    border-bottom: 2px solid #2e7d82;
+}

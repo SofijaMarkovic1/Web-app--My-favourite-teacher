@@ -1,0 +1,67 @@
+<div style="width: 800px; background-color: rgb(255, 255, 255);">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog">
+      <div class="modal-content"  style="width: 100%; padding: 10%; margin-top: 25%;">
+        <div class="modal-header text-center">
+          <h4 id="editProfileModalLabel">Schedule a class with {{professor.name}}</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+            </div>
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm" style="color: green;">{{message}}</h6></label>
+            </div>
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm">Subject</h6></label>
+              <div>
+                  <select class="form-select" [(ngModel)]="selectedSubject">
+                      <option *ngFor="let s of subjects" value="{{s.idsubject}}">{{s.name}}</option>
+                  </select>
+              </div>
+            </div>
+            <br/>
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm">Start time: {{selectedTimeStart}}</h6></label>
+              <label class="mb-1"><h6 class="mb-0 text-sm">End time: {{selectedTimeEnd}}</h6></label>
+            </div>
+            <br/>
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm">Topics</h6></label>
+              <textarea class="mb-4" [rows]="5" type="text" placeholder="Enter topics for the scheduled class..." [(ngModel)]="topic"></textarea>
+            </div>
+            
+            <div class="row px-3">
+              <label class="mb-1"><h6 class="mb-0 text-sm"><input class="mb-4" type="checkbox" [(ngModel)]="double" style="margin-right: 10px;" (change)="addHour()"/>Double class</h6></label>
+            </div>
+        </div>
+        
+        <div class="modal-footer text-center">
+          <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" style="margin-right: 30%;" (click)="scheduleClass()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="editProfileModal1" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog">
+      <div class="modal-content"  style="width: 100%; padding: 10%; margin-top: 25%;">
+        <div class="modal-header text-center">
+          <h4 id="editProfileModalLabel">Event</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <br/>
+            <div class="row px-3">
+              <label class="mb-1"><h5 class="mb-0 text-sm">{{message}}</h5></label>
+            </div>
+      </div>
+    </div>
+  </div>
+
+

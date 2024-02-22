@@ -1,0 +1,56 @@
+
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                      <a routerLink="/studentProfile" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                          <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Profile</span>
+                      </a>
+                      <a routerLink="/studentProfs" class="list-group-item list-group-item-action py-2 ripple active">
+                          <i class="bi bi-book" style="margin-right: 20px;"></i><span>Professors</span>
+                      </a>
+                      <a routerLink="/studentClasses" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Classes</span></a>
+                      <a routerLink="/studentNotifications" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-bell-fill" style="margin-right: 20px;"></i><span>Notifications</span>
+                      </a>
+                      <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                      </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;" id="main"> 
+            <div class="header">
+                <h1>Meet the proffesors</h1>
+                <p>Your <b>easy way</b> for studying.</p>
+            </div>
+    
+            <br/><br/>
+            <div class="row" style="padding-left: 10%; padding-right: 13%;">
+                <input type="text" id="myInput" placeholder="Search.." title="Type in a name" (input)="searchProfessors()" [(ngModel)]="input">
+                <table style="width: 90%; font-size: 25px; margin-top: 20px; margin-left: 5%;" id="myTable">
+                    <tr>
+                        <th style="width: 15%;"></th>
+                        <th style="width: 25%;"><label  (click)="sortByName()">Name</label></th>
+                        <th style="width: 25%;"><label >Rating</label></th>
+                    </tr>
+                    <tr *ngFor="let p of professors;let i = index">
+                        <td><img src="data:image/jpeg;base64,{{p.image}}" alt="Avatar" class="avatar"></td>
+                        <td>{{p.name}} {{p.surname}} <br/><small><a style="color: #2e7d82;" routerLink="/viewProfStudent" (click)="saveProf(p)">view details</a></small></td>
+                        <td *ngIf="av[i]>0 && av[i]<=1"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></td>
+                        <td *ngIf="av[i]>1 && av[i]<=2"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></td>
+                        <td *ngIf="av[i]>2 && av[i]<=3"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></td>
+                        <td *ngIf="av[i]>3 && av[i]<=4"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></td>
+                        <td *ngIf="av[i]>4 && av[i]<=5"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></td>
+                        <td *ngIf="av[i]==0"><p>No raiting for {{p.name}} {{p.surname}} yet.</p></td>
+                    </tr>
+                </table>
+                <br/>
+            </div>
+        </div>
+    </div>
+</body>

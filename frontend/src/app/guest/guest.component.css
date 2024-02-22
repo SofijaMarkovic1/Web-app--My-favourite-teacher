@@ -1,0 +1,225 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Style the body */
+  body {
+    margin: 0;
+    background-color: #efe8dc;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  /* Header/logo Title */
+  .header {
+    padding: 80px;
+    text-align: center;
+    background: #2e7d82;
+    color: #efe8dc;
+    font-size: 25px;
+  }
+  
+  /* Increase the font size of the heading */
+  .header h1 {
+    font-size: 60px;
+  }
+  /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+  .navbar {
+    overflow: hidden;
+    background-color: #2e7d82;
+    top: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  
+  /* Style the navigation bar links */
+  .navbar a {
+    float: left;
+    display: block;
+    color: #efe8dc;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 700;
+  }
+
+  label {
+      text-decoration: none;
+      color: rgb(214, 193, 156);
+      float: left;
+      display: block;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 700;
+  }
+  label:hover {
+    color: rgb(203, 183, 149);
+  }
+
+  .x {
+    text-decoration: none;
+    color: rgb(214, 193, 156);
+    font-size: 30px;
+  }
+  .x:hover {
+    color: rgb(203, 183, 149);
+  }
+
+  
+  
+  /* Right-aligned link */
+  .navbar a.right {
+    float: right;
+  }
+  
+  /* Change color on hover */
+  .navbar a:hover {
+    color: rgb(214, 193, 156);
+  }
+  
+  /* Column container */
+  .row {  
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  
+  /* Create two unequal columns that sits next to each other */
+  /* Sidebar/left column */
+  .side {
+    -ms-flex: 20%; /* IE10 */
+    flex: 20%;
+    background-color: #efe8dc;
+    padding: 15px;
+    margin-top: 3%;
+    flex: 1;
+  }
+  .side .img{
+    width: 60%;
+    height: 70%;
+    margin: 4%;
+    margin-bottom: 6%;
+  }
+  .avatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+  }
+  
+  /* Fake image, just for this example */
+  .fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #2e7d82;
+    color: #efe8dc;
+  }
+
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    margin: 2%;
+  }
+
+  /* Dodajte stilove za sliku */
+  .image-container img {
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* Dodajte stilove za tekst */
+  .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  /* Kada je roditeljski kontejner hover-ovan, postavljamo opacity na 0 za sliku i 1 za tekst */
+  .image-container:hover img {
+    opacity: 0;
+  }
+
+  .image-container:hover .image-text {
+    opacity: 1;
+  }
+  .container {
+    position: relative;
+    width: 30%;
+    max-width: 300px;
+  }
+  
+  /* Make the image to responsive */
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* The overlay effect - lays on top of the container and over the image */
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* When you mouse over the container, fade in the overlay title */
+  .container:hover .overlay {
+    opacity: 1;
+  }
+  
+  /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 700px) {
+    .row {   
+      flex-direction: column;
+    }
+  }
+  
+  /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+  @media screen and (max-width: 400px) {
+    .navbar a {
+      float: none;
+      width: 100%;
+    }
+  }
+  #myInput {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+  
+  

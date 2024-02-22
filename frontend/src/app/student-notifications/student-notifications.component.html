@@ -1,0 +1,49 @@
+
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                      <a routerLink="/studentProfile" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                          <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Profile</span>
+                      </a>
+                      <a routerLink="/studentProfs" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-book" style="margin-right: 20px;"></i><span>Professors</span>
+                      </a>
+                      <a routerLink="/studentClasses" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Classes</span></a>
+                      <a routerLink="/studentNotifications" class="list-group-item list-group-item-action py-2 ripple active">
+                          <i class="bi bi-bell-fill" style="margin-right: 20px;"></i><span>Notifications</span>
+                      </a>
+                      <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;" id="main"> 
+            <div class="header">
+                <h1>Your notifications</h1>
+                <p>Your <b>easy way</b> for studying.</p>
+            </div>
+    
+            <br/><br/>
+            <div class="row" style="padding-left: 10%; padding-right: 13%;" id="notifications">
+                <div class="row notification-container">
+                    <div class="card notification-card notification-invitation shadow-box" style="background-color: transparent; height: fit-content;" *ngFor="let n of notifications">
+                      <div class="card-body">
+                        <table>
+                          <tr>
+                            <td style=" margin-top: 10px; margin-bottom: 10px;"><div class="card-title" style="font-size: 20px; "><p style="margin: 3px;"><i *ngIf="n.seen" class="bi bi-bell-fill" style="margin-right: 20px; padding: 5px; color: rgb(255, 213, 3); font-size: 28px;"></i><i *ngIf="!n.seen" class="bi bi-bell-fill" style="margin-right: 20px; padding: 5px; color: rgb(119 8 125); font-size: 28px;"></i>{{n.reason}}</p></div></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,17 @@
+
+<div class="card">
+    <p id="title">Schedule a class</p>
+    <form [formGroup]="scheduleClassForm" (ngSubmit)="scheduleAClass()">
+        <div class="form-group">
+            <label for="classTime" style="display: inline-block; width: 100px;">Class time</label>
+            <input type="datetime-local" id="classTime" formControlName="classTime" style="display: inline-block; width: calc(100% - 80% - 110px);"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="email" style="display: inline-block; width: 100px; vertical-align: top;">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email" style="display: inline-block; width: calc(100% - 80% - 110px);"/>
+        </div>
+        <br/>
+        <button type="submit" id="schedule-button" style="margin-left: 5%;">Schedule class</button>
+    </form>
+</div>

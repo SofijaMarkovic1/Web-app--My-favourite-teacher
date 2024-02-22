@@ -1,0 +1,121 @@
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="card card0 border-0">
+        <div class="row d-flex">
+            <div class="col-lg-6">
+                <div class="card1 pb-5" style="margin-top: 50%;">
+                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                        <img src="../../assets/logo.png" class="image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card2 card border-0 px-4 py-5">
+                    <div class="row px-3 mb-4">
+                        <div class="line"></div>
+                        <small class="or text-center">Register student</small>
+                        <div class="line"></div>
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Username</h6></label>
+                        <input class="mb-4" type="text" name="email" placeholder="Enter an username" [(ngModel)]="username">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Password</h6></label>
+                        <input type="password" name="password" placeholder="Enter password" [(ngModel)]="password">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Safety question</h6></label>
+                        <input type="text" name="question" placeholder="Enter a safety question" [(ngModel)]="question">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Answer</h6></label>
+                        <input type="text" name="answer" placeholder="Enter an answer to safety question" [(ngModel)]="answer">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">First name</h6></label>
+                        <input type="text" name="name" placeholder="Enter Your first name" [(ngModel)]="name">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Last name</h6></label>
+                        <input type="text" name="surname" placeholder="Enter Your last name" [(ngModel)]="surname">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Gender</h6></label>
+                        <div>
+                            <select class="form-select" [(ngModel)]="gender">
+                                <option selected value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Address</h6></label>
+                        <input type="text" name="adress" placeholder="Enter Your adress" [(ngModel)]="address">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Contact</h6></label>
+                        <input type="text" name="contact" placeholder="Enter Your contact number" [(ngModel)]="contact">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Email Address</h6></label>
+                        <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address" [(ngModel)]="email">
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Profile picture</h6></label>
+                        <input class="mb-4" type="file" name="picture" (change)="validateFile($event)">
+                        <div id="preview"></div>
+                    </div>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">School type</h6></label>
+                        <div>
+                            <select class="form-select" [(ngModel)]="schoolType">
+                                <option selected value="1">Primary</option>
+                                <option value="2">Grammar school</option>
+                                <option value="3">Vocational school</option>
+                                <option value="4">Art school</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row px-3">
+                        <label class="mb-1"><h6 class="mb-0 text-sm">Grade</h6></label>
+                        <div>
+                            <select class="form-select" [(ngModel)]="grade">
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5" *ngIf="schoolType==1">5</option>
+                                <option value="6" *ngIf="schoolType==1">6</option>
+                                <option value="7" *ngIf="schoolType==1">7</option>
+                                <option value="8" *ngIf="schoolType==1">8</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row mb-3 px-3">
+                        <button type="submit" class="btn btn-blue text-center" (click)="registerStudent()">Register</button>
+                    </div>
+                    <div class="row mb-4 px-3">
+                        <small class="font-weight-bold">Have an account? <a class="text-danger " routerLink="/">Login</a></small> <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-blue py-4">
+            <div class="row px-3">
+                <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2024. All rights reserved. Sofija Marković, odsek za Softversko inženjerstvo, Elektrotehnički fakultet Univerziteta u Beogradu.</small>
+                <div class="social-contact ml-4 ml-sm-auto">
+                    <span class="fa fa-facebook mr-4 text-sm"></span>
+                    <span class="fa fa-google-plus mr-4 text-sm"></span>
+                    <span class="fa fa-linkedin mr-4 text-sm"></span>
+                    <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

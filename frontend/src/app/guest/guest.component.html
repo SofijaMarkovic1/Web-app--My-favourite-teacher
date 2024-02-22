@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Page Title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="#" class="active"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a routerLink="/" class="right">Login</a>
+        </div>
+    
+        <div class="header">
+            <h1>My favorite teacher</h1>
+            <p>Your <b>easy way</b> for studying.</p>
+        </div>
+
+        <br/><br/>
+        <div class="row">
+            <div class="side text-center image-container" style="margin-left: 7%;">
+                <img src="../../assets/Boy Study.png" class="img img-fluid"/>
+                <br/>
+                <div class="image-text">
+                    <h4>Over {{studentCnt}} students are registered on our site</h4>
+                </div>
+            </div>
+            <div class="side text-center image-container">
+                
+                <img src="../../assets/Female Teacher.png" class="img img-fluid"/>
+                <br/>
+                <div class="image-text">
+                    <h4>Over {{professorCnt}} professors are registered on our site</h4>
+                </div>
+            </div>
+            <div class="side text-center image-container" style="margin-right: 7%;">
+                <img src="../../assets/Energy equivalency.png" class="img img-fluid"/>
+                <br/>
+                <div class="image-text">
+                    <h4>More than {{numOfClasses[0]}} classes held last week, and over {{numOfClasses[1]}} last mounth.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <br/><br/><hr style="width: 80%; margin-left: 8%;"/>
+        </div>
+        <div class="row" style="padding-left: 10%; padding-right: 13%;">
+            <h1 style="padding-left: 40%;">Meet the professors</h1>
+            <input type="text" id="myInput" placeholder="Search.." title="Type in a name" (input)="searchProfessors()" [(ngModel)]="input">
+            <table style="width: 90%; font-size: 25px; margin-top: 20px; margin-left: 5%;" id="myTable">
+                <tr>
+                    <th style="width: 15%;"></th>
+                    <th style="width: 25%;"><label  (click)="sortByName()">Name</label></th>
+                    <th style="width: 50%;"><label href="#" (click)="sortBySubjects()">Subjects</label></th>
+                </tr>
+                <tr *ngFor="let p of professors;let i = index">
+                    <td><img src="data:image/jpeg;base64,{{p.image}}" alt="Avatar" class="avatar"></td>
+                    <td>{{p.name}} {{p.surname}}</td>
+                    <td><span *ngIf="profToSub[i]">{{ profToSub[i].join(', ') }}</span></td>
+                </tr>
+            </table>
+            <br/>
+        </div>
+        <div class="row text-center" style="margin-top: 20px;">
+            <br/><br/><hr style="width: 80%; margin-left: 8%;"/>
+        </div>
+        <div class="row" style="padding-left: 10%; padding-right: 13%;">
+            <h1 style="padding-left: 40%;">Our courses</h1>
+            <table style="width: 80%; font-size: 25px; margin-top: 30px; margin-left: 8%;" id="myTable">
+                <tr class="text-center">
+                    <th></th>
+                    <th class="x">Name</th>
+                    <th class="x">Professors</th>
+                </tr>
+                <tr *ngFor="let s of subjects;let i = index" class="text-center">
+                    <td></td>
+                    <td>{{s.name}}</td>
+                    <td *ngIf="subToProf[i].length>0">{{subToProf[i].join(", ")}}</td>
+                    <td *ngIf="subToProf[i].length==0">/</td>
+                </tr>
+            </table>
+            <br/>
+        </div>
+        <br/><br/>
+        <div class="footer">
+        <h6>Copyright &copy; 2024. All rights reserved. Sofija Marković, odsek za Softversko inženjerstvo, Elektrotehnički fakultet Univerziteta u Beogradu.</h6>
+        </div>
+
+    </body>
+</html>

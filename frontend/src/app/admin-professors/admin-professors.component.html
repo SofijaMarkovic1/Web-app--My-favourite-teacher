@@ -1,0 +1,135 @@
+<head>
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                      <a routerLink="/adminHome" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                          <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Home</span>
+                      </a>
+                      <a routerLink="/adminStudents" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Students</span></a>
+                      <a routerLink="/adminProfessors" class="list-group-item list-group-item-action py-2 ripple active">
+                        <i class="bi bi-backpack-fill" style="margin-right: 20px;"></i><span>Professors</span>
+                      </a>
+                      <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                      </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;" id="main"> 
+            <div class="header">
+                <h1>Students overview</h1>
+                <p>Your <b>easy way</b> for studying.</p>
+            </div>
+            <div class="row" style="padding-left: 6%; padding-right: 2%; margin-top: 20px;">
+                <h2>Registered professors</h2>
+                <table class="table table-striped table-hover table-bordered" style="border-color: black; font-size: 20px; margin-top: 10px; background-color: #faf0e6; width: 100%;" id="table1">
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Contact</th>
+                        <th>Gender</th>
+                        <th>CV</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let p of professors; let i=index">
+                        <td>{{p.name}}</td>
+                        <td>{{p.surname}}</td>
+                        <td>{{p.email}}</td>
+                        <td>{{p.adress}}</td>
+                        <td>{{p.contact}}</td>
+                        <td *ngIf="p.gender==1">Male</td>
+                        <td *ngIf="p.gender==2">Female</td>
+                        <td>
+                            <a href="data:application/pdf;base64,{{cvs[i].cv}}" download="{{p.name}}_{{p.surname}}_CV.pdf" style="font-size: 16px;">
+                                download &nbsp; CV
+                            </a>  
+                        </td>
+                        <td *ngIf="p.accepted">
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-right: 10px; color: black;" (click)="deactivateProfessor(p.userid)">Deactivate account</button>
+                        </td>
+                        <td *ngIf="!p.accepted">
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-right: 10px; color: black;" (click)="activateProfessor(p.userid)">Activate account</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row" style="padding-left: 6%; padding-right: 2%; margin-top: 20px;">
+                <h2>Registration requests</h2>
+                <table class="table table-striped table-hover table-bordered" style="border-color: black; font-size: 20px; margin-top: 10px; background-color: #faf0e6; width: 100%;" id="table1">
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Contact</th>
+                        <th>Gender</th>
+                        <th>CV</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let p of professors">
+                        <td *ngIf="!p.accepted">{{p.name}}</td>
+                        <td *ngIf="!p.accepted">{{p.surname}}</td>
+                        <td *ngIf="!p.accepted">{{p.email}}</td>
+                        <td *ngIf="!p.accepted">{{p.adress}}</td>
+                        <td *ngIf="!p.accepted">{{p.contact}}</td>
+                        <td *ngIf="p.gender==1 && !p.accepted">Male</td>
+                        <td *ngIf="p.gender==2 && !p.accepted">Female</td>
+                        <td *ngIf="!p.accepted">
+                            <a href="data:application/pdf;base64,{{cvs[professors.indexOf(p)].cv}}" download="{{p.name}}_{{p.surname}}_CV.pdf" style="font-size: 16px;">
+                                download &nbsp; CV
+                            </a>  
+                        </td>
+                        <td *ngIf="!p.accepted">
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 2px; width: 130px; height: 40px; color: black;" (click)="activateProfessor(p.userid)">Accept request</button>
+                        </td>
+                        <td *ngIf="!p.accepted">
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 2px; width: 130px; height: 40px; color: black;" (click)="declineProfessor(p.userid)">Decline request</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row" style="padding-left: 6%; padding-right: 2%; margin-top: 20px;">
+                <h2>New subjects</h2>
+                <table class="table table-striped table-hover table-bordered" style="border-color: black; font-size: 20px; margin-top: 10px; background-color: #faf0e6; width: 100%;" id="table1">
+                    <tr>
+                        <th>Name</th>
+                        <th>Proposed by</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let n of newSubjects">
+                        <td>{{n.name}}</td>
+                        <td>{{getProfessorWithId(n.idprofessor)}}</td>
+                        <td>
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-right: 10px; color: black;" (click)="acceptNewSubject(n)">Accept request</button>
+                        </td>
+                        <td>
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-right: 10px; color: black;" (click)="declineNewSubject(n)">Decline request</button>
+                        </td>
+                    </tr>
+                </table>
+                <hr style="margin-top: 20px; margin-bottom: 20px;">
+                <div class="row px-3">
+                    <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+                </div>
+                <div class="row px-3">
+                    <label class="mb-1"><h6 class="mb-0 text-sm">New subjects name</h6></label>
+                    <input class="mb-4" type="text" name="email" placeholder="Enter subjects name" [(ngModel)]="newSubjectName" style="width: 80%; margin-left: 8%;">
+                </div>
+                <div class="row mb-3 px-3">
+                    <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-right: 10px; color: black; margin-left: 45%;" (click)="insert()">Add subject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,159 @@
+<head>
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                  <div class="list-group list-group-flush mx-3 mt-4">
+                    <a routerLink="/studentProfile" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                        <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Profile</span>
+                    </a>
+                    <a routerLink="/studentProfs" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="bi bi-book" style="margin-right: 20px;"></i><span>Professors</span>
+                    </a>
+                    <a routerLink="/studentClasses" class="list-group-item list-group-item-action py-2 ripple active">
+                        <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Classes</span></a>
+                    <a routerLink="/studentNotifications" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="bi bi-bell-fill" style="margin-right: 20px;"></i><span>Notifications</span>
+                    </a>
+                    <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                    </a>
+                  </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;" id="main"> 
+            <div class="header">
+                <h1>Classes overview</h1>
+                <p>Your <b>easy way</b> for studying.</p>
+                
+            </div>
+            <br/><br/>
+            <div class="row" style="padding-left: 6%; padding-right: 2%;">
+                <h2>Archived classes</h2>
+                <table class="table table-striped table-hover table-bordered" style="border-color: black; font-size: 20px; margin-top: 10px; background-color: #faf0e6; width: 100%;" id="table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Professor</th>
+                        <th>Subject</th>
+                        <th>Proffesors comment</th>
+                        <th>Your comment</th>
+                        <th>Rate a professor</th>
+                    </tr>
+                    <tr *ngFor="let p of pastClasses">
+                        <td>{{p.dateAndTimeStart.substring(0, 10)}}</td>
+                        <td>{{p.dateAndTimeStart.substring(11, p.dateAndTimeStart.length)}} - {{p.dateAndTimeEnd.substring(11, p.dateAndTimeEnd.length)}}</td>
+                        <td>{{vratiProfSaId(p.idprofessor)}}</td>
+                        <td>{{vratiPredmetSaId(p.idsubject)}}</td>
+                        <td>{{p.professorComment}}</td>
+                        <td *ngIf="p.studentComment==null">
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px;" (click)="openCommentModal(p.idpastclass)">Add Your comment</button>
+                        </td>
+                        <td *ngIf="p.studentComment!=null">{{p.studentComment}}</td>
+                        <td *ngIf="p.studentGrade==0" >
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px;" (click)="openRateModal(p.idpastclass)">Rate proffesor</button>
+                        </td>
+                        <td *ngIf="p.studentGrade!=0">
+                            <div class="row" *ngIf="p.studentGrade==5" style="width: 200px; height: 40px; background-color: transparent;"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></div>
+                            <div class="row" *ngIf="p.studentGrade==4" style="width: 200px; height: 40px; background-color: transparent;"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></div>
+                            <div class="row" *ngIf="p.studentGrade==3" style="width: 200px; height: 40px; background-color: transparent;"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></div>
+                            <div class="row" *ngIf="p.studentGrade==2" style="width: 200px; height: 40px; background-color: transparent;"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></div>
+                            <div class="row" *ngIf="p.studentGrade==1" style="width: 200px; height: 40px; background-color: transparent;"><p><i class="bi bi-star-fill" style="color: rgb(229, 182, 12); display: inline-block;"></i></p></div>
+                        </td>
+
+                    </tr>
+                </table>
+                <hr style="margin-top: 2%; margin-bottom: 2%;"/>
+                <h2>Incoming classes</h2>
+                <table class="table table-striped table-hover table-bordered" style="border-color: black; font-size: 20px; margin-top: 10px; background-color: #faf0e6; width: 100%;" id="table1">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Professor</th>
+                        <th>Subject</th>
+                        <th>Topics</th>
+                        <th>Join the class</th>
+                    </tr>
+                    <tr *ngFor="let i of incomingClasses">
+                        <td>{{i.dateAndTimeStart.substring(0, 10)}}</td>
+                        <td>{{i.dateAndTimeStart.substring(11, i.dateAndTimeStart.length)}} - {{i.dateAndTimeEnd.substring(11, i.dateAndTimeEnd.length)}}</td>
+                        <td>{{vratiProfSaId(i.idprofessor)}}</td>
+                        <td>{{vratiPredmetSaId(i.idsubject)}}</td>
+                        <td>{{i.topic}}</td>
+                        <td *ngIf="!za15min(i)">You will be able to join a class 15min prior.</td>
+                        <td *ngIf="za15min(i)">
+                            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px;" (click)="joinClass(i)">Join class</button>
+                        </td>
+                    </tr>
+                </table>
+                <br/><br/>
+            </div>
+            
+        </div>
+    </div>
+</body>
+<div class="modal fade" id="rateModal" tabindex="-1" aria-labelledby="rate:abel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog" style="width: 500px;">
+      <div class="modal-content"  style="width: 100%; padding: 10%; margin-top: 25%;">
+        <div class="modal-header text-center">
+          <h4 id="rateLabel">Rate</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body" id="starRating">         
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="stars">
+                        <form action="">
+                            <input class="fa-solid fa-star star-5 star" id="star-5" type="radio" name="star" (click)="rate(5)"/>
+                            <label class="fa-solid fa-star star-5 star" for="star-5"></label>
+                        
+                            <input class="fa-solid fa-star star-4 star" id="star-4" type="radio" name="star" (click)="rate(4)"/>
+                            <label class="fa-solid fa-star star-4 star" for="star-4"></label>
+                        
+                            <input class="fa-solid fa-star star-3 star" id="star-3" type="radio" name="star" (click)="rate(3)"/>
+                            <label class="fa-solid fa-star star-3 star" for="star-3"></label>
+                        
+                            <input class="fa-solid fa-star star-2 star" id="star-2" type="radio" name="star" (click)="rate(2)"/>
+                            <label class="fa-solid fa-star star-2 star" for="star-2"></label>
+                        
+                            <input class="fa-solid fa-star star-1 star" id="star-1" type="radio" name="star" (click)="rate(1)"/>
+                            <label class="fa-solid fa-star star-1 star" for="star-1"></label>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-left: 26%;" (click)="submitGrade()">Submit</button>
+        </div>
+    </div>
+  </div>
+</div>
+  <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentLabel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog">
+      <div class="modal-content"  style="width: 100%; padding: 10%; margin-top: 25%;">
+        <div class="modal-header text-center">
+          <h4 id="commentLabel">Leave a comment</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+                <label [ngClass]="{'red': comment.length === 255}" style="margin-bottom: 10px;">{{comment.length}}/255 characters</label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 180px;" [(ngModel)]="comment" [maxlength]="255"></textarea>
+                <label for="floatingTextarea2">Comment</label>
+            </div>
+            <br/><br/>
+            <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-left: 25%;" (click)="leaveAComment()">Submit</button>
+        </div>
+    </div>
+  </div>
+  </div>
+
+

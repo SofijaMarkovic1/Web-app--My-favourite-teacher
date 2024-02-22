@@ -1,0 +1,117 @@
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                      <a routerLink="/studentProfile" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+                          <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Profile</span>
+                      </a>
+                      <a routerLink="/studentProfs" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-book" style="margin-right: 20px;"></i><span>Professors</span>
+                      </a>
+                      <a routerLink="/studentClasses" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Classes</span></a>
+                      <a routerLink="/studentNotifications" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-bell-fill" style="margin-right: 20px;"></i><span>Notifications</span>
+                      </a>
+                      <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                      </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;"> 
+            <div class="card-img-top"></div>
+            <div class="card-body little-profile text-center">
+                <div class="pro-img"> <img src="data:image/jpeg;base64,{{student.image}}" alt="user"></div>
+                <h2 class="m-b-0">{{student.name}} {{student.surname}}</h2>
+                <p>Student</p>
+                <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" (click)="openEditProfileModal()">Edit profile</button>
+                    <br/><br/>
+                    <div class="row text-center m-t-20">
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">Email</h3><small>{{student.email}}</small>
+                    </div>
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">Contact</h3><small>{{student.contact}}</small>
+                    </div>
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">Address</h3><small>{{student.adress}}</small>
+                    </div>
+                    <div class="col-lg-3 col-md-3 m-t-20">
+                        <h3 class="m-b-0 font-light">School</h3><small>{{schoolType}} {{student.grade}}th grade</small>
+                    </div>
+                </div>
+                <br/><br/>            </div>
+        </div>
+    </div>
+</body>
+
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true" style="margin-left: 8%;">
+    <div class="modal-dialog">
+      <div class="modal-content"  style="width: 100%; padding: 10%;">
+        <div class="modal-header text-center">
+          <h4 id="editProfileModalLabel">Edit Profile</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>You can leave inputs empty if You don't want to change info.</p>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm" style="color: #9a0026;">{{errorMessage}}</h6></label>
+            </div>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm">First name</h6></label>
+                <input type="text" name="name" placeholder="Enter Your first name" [(ngModel)]="newName">
+            </div>
+            <br/>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm">Last name</h6></label>
+                <input type="text" name="surname" placeholder="Enter Your last name" [(ngModel)]="newSurname">
+            </div>
+            <br/>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm">Address</h6></label>
+                <input type="text" name="adress" placeholder="Enter Your adress" [(ngModel)]="newAddress">
+            </div>
+            <br/>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm">Contact</h6></label>
+                <input type="text" name="contact" placeholder="Enter Your contact number" [(ngModel)]="newContact">
+            </div>
+            <br/>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm">Email Address</h6></label>
+                <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address" [(ngModel)]="newEmail">
+            </div>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm">Profile picture</h6></label>
+                <input class="mb-4" type="file" name="picture" (change)="validateFile($event)">
+                <div id="preview"></div>
+            </div>
+            <div class="row px-3">
+                <label class="mb-1"><h6 class="mb-0 text-sm">Grade</h6></label>
+                <div>
+                    <select class="form-select" [(ngModel)]="newGrade">
+                        <option selected value="1" *ngIf="this.student.grade<1">1</option>
+                        <option value="2" *ngIf="this.student.grade<2">2</option>
+                        <option value="3" *ngIf="this.student.grade<3">3</option>
+                        <option value="4" *ngIf="this.student.grade<4">4</option>
+                        <option value="5" *ngIf="this.student.grade<5 && this.student.schoolType==1">5</option>
+                        <option value="6" *ngIf="this.student.grade<6 && this.student.schoolType==1">6</option>
+                        <option value="7" *ngIf="this.student.grade<7 && this.student.schoolType==1">7</option>
+                        <option value="8" *ngIf="this.student.grade<8 && this.student.schoolType==1">8</option>
+                        <option value="9" *ngIf="this.student.grade==8 && this.student.schoolType==1">Grammar school</option>
+                        <option value="10" *ngIf="this.student.grade==8 && this.student.schoolType==1">Vocational school</option>
+                        <option value="11" *ngIf="this.student.grade==8 && this.student.schoolType==1">Art school</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer text-center">
+          <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" style="margin-right: 30%;" (click)="save()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

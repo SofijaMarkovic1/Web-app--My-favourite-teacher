@@ -1,0 +1,68 @@
+<head>
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                      <a routerLink="/adminHome" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+                          <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Home</span>
+                      </a>
+                      <a routerLink="/adminStudents" class="list-group-item list-group-item-action py-2 ripple">
+                          <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Students</span></a>
+                      <a routerLink="/adminProfessors" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="bi bi-backpack-fill" style="margin-right: 20px;"></i><span>Professors</span>
+                      </a>
+                      <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                      </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;" id="main"> 
+            <div class="header">
+                <h1>Admin home page</h1>
+                <p>Your <b>easy way</b> for studying.</p>
+            </div>
+            <br/><br/>
+            <div class="row" style="padding-left: 6%; padding-right: 2%;">
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas1 class="canvas1"></canvas>
+                </div>
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas2 class="canvas2"></canvas>
+                </div>
+            </div>
+            <div class="row" style="padding-left: 6%; padding-right: 2%;">
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas3 class="pie"></canvas>
+                </div>
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas4 class="pie"></canvas>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="row" style="padding-left: 6%; padding-right: 2%;">
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas5 class="canvas2"></canvas>
+                </div>
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas6 class="canvas2"></canvas>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="row" style="padding-left: 6%; padding-right: 2%;">
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas7 class="canvas2"></canvas>
+                </div>
+                <div style="display: inline-block;" class="col-6">
+                    <canvas #barChartCanvas8 class="pie1"></canvas>
+                </div>
+            </div>
+            <br/><br/>
+        </div>
+    </div>
+</body>

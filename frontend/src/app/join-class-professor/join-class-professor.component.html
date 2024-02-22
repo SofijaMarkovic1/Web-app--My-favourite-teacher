@@ -1,0 +1,40 @@
+<head>
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="padding-top: 4%;">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                      <a routerLink="/professorProfile" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                          <i class="bi bi-person-lines-fill" style="margin-right: 20px;"></i><span>Profile</span>
+                      </a>
+                      <a routerLink="/professorClasses" class="list-group-item list-group-item-action py-2 ripple active">
+                          <i class="bi bi-calculator-fill" style="margin-right: 20px;"></i><span>Classes</span></a>
+                      <a routerLink="/professorStudents" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="bi bi-backpack-fill" style="margin-right: 20px;"></i><span>Students</span>
+                      </a>
+                      <a routerLink="#" class="list-group-item list-group-item-action py-2 ripple" (click)="logout()">
+                        <i class="bi bi-box-arrow-left" style="margin-right: 20px;"></i><span>Logout</span>
+                    </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="card col-10" style="padding: 0%;" id="main"> 
+            <div class="header">
+                <h1>Classes overview</h1>
+                <p>Your <b>easy way</b> for studying.</p>
+                
+            </div>
+            <br/><br/>
+            <div class="row text-center" style="padding-left: 6%; padding-right: 2%;">
+                <app-jitsi-professor></app-jitsi-professor>
+                <button class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true" style="padding: 3px; width: 150px; height: 40px; margin-left: 45%; margin-top: 20px;" (click)="endClass()">End class</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+
